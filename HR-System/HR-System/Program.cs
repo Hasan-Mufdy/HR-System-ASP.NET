@@ -1,4 +1,8 @@
+using HR_System.Models.Entities;
+using HR_System.Models.Interfaces;
+using HR_System.Models.Services;
 using HR_System.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +12,20 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddIdentity<AuthUser, IdentityRole>(options =>
+{
+    options.User.RequireUniqueEmail = true;
+}).AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddTransient<IUserService, IdentityUserService>();
+
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+    options.LoginPath = "/Auth/Index";
+});
 
 var app = builder.Build();
 
