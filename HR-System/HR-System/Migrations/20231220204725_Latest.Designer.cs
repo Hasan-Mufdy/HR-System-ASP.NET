@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HR_System.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231210185030_Latest")]
+    [Migration("20231220204725_Latest")]
     partial class Latest
     {
         /// <inheritdoc />
@@ -108,6 +108,9 @@ namespace HR_System.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -152,6 +155,23 @@ namespace HR_System.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "65fd3f36-25c3-4126-8f9a-b9c8ba5e08f4",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "a9dd87d7-4264-42ba-9d2c-2510979c3684",
+                            Email = "admin@a.com",
+                            EmailConfirmed = false,
+                            IsApproved = false,
+                            LockoutEnabled = false,
+                            PasswordHash = "AQAAAAIAAYagAAAAENWfUuIWiFP6+iCJmEx2zD9tHp7Xp7LH87ziKk+k0rQA7jV1wsRuzNgiceuPeG7p5g==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "18b9f597-6e54-45e5-ba3a-9f639f468505",
+                            TwoFactorEnabled = false,
+                            UserName = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("HR_System.Models.Position", b =>

@@ -86,3 +86,6 @@ C:\Users\HM\source\repos\HR-System-ASP.NET\HR-System\HR-System\obj\Debug\net7.0\
 C:\Users\HM\source\repos\HR-System-ASP.NET\HR-System\HR-System\obj\Debug\net7.0\HR-System.pdb
 C:\Users\HM\source\repos\HR-System-ASP.NET\HR-System\HR-System\obj\Debug\net7.0\HR-System.genruntimeconfig.cache
 C:\Users\HM\source\repos\HR-System-ASP.NET\HR-System\HR-System\obj\Debug\net7.0\ref\HR-System.dll
+C:\Users\HM\source\repos\HR-System-ASP.NET\HR-System\HR-System\bin\Debug\net7.0\System.Net.Http.Formatting.dll
+C:\Users\HM\source\repos\HR-System-ASP.NET\HR-System\HR-System\bin\Debug\net7.0\System.Web.Http.dll
+C:\Users\HM\source\repos\HR-System-ASP.NET\HR-System\HR-System\bin\Debug\net7.0\System.Web.Http.WebHost.dll

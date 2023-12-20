@@ -11,6 +11,12 @@ namespace HR_System.Models.Services
         {
             _context = context;
         }
+
+        public async Task<int> Count()
+        {
+            return await _context.Employees.CountAsync();
+        }
+
         public async Task DeleteEmployee(int id)
         {
             var employee = await _context.Employees.SingleOrDefaultAsync(e => e.Id == id);
@@ -48,22 +54,20 @@ namespace HR_System.Models.Services
             return emp;
         }
 
-        public async Task<Employee> UpdateEmployee(int id, Employee employee)
+        public async Task UpdateEmployee(int id, Employee newEmployee)
         {
             var existingEmployee = await _context.Employees.FindAsync(id);
-            if (existingEmployee != null)
-            {
-                return null;
-            }
-            existingEmployee.Name = employee.Name;
-            existingEmployee.DateOfBirth = employee.DateOfBirth;
-            existingEmployee.Number = employee.Number;
-            existingEmployee.Email = employee.Email;
+            //if (existingEmployee != null)
+            //{
+            //    return null;
+            //}
+            existingEmployee.Name = newEmployee.Name;
+            existingEmployee.DateOfBirth = newEmployee.DateOfBirth;
+            existingEmployee.Number = newEmployee.Number;
+            existingEmployee.Email = newEmployee.Email;
 
             _context.Update(existingEmployee);
             await _context.SaveChangesAsync();
-
-            return existingEmployee;
         }
     }
 }

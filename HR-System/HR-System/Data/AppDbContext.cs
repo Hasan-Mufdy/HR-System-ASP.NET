@@ -1,4 +1,5 @@
-﻿using HR_System.Models;
+﻿using HR_System.Controllers;
+using HR_System.Models;
 using HR_System.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -24,6 +25,18 @@ namespace HR_System.Data
             new IdentityRole { Id = "HR", Name = "HR", NormalizedName = "HR" },
             new IdentityRole { Id = "User", Name = "User", NormalizedName = "User" }
             );
+
+            var adminUser = new AuthUser
+            {
+                UserName = "Admin",
+                Email = "admin@a.com",
+            };
+
+            var passwordHasher = new PasswordHasher<AuthUser>();
+            adminUser.PasswordHash = passwordHasher.HashPassword(adminUser, "Admin!23");
+
+            modelBuilder.Entity<AuthUser>().HasData(adminUser);
+
             base.OnModelCreating(modelBuilder);
         }
 

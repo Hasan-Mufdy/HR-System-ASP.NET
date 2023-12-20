@@ -19,12 +19,22 @@ namespace HR_System.Models.Services
 
         public async Task<UserDto> Authenticate(string username, string password)
         {
+            var user = await _userManager.FindByNameAsync(username);
+
+            if (user == null && user.UserName != "Admin")
+            {
+                return null;
+            }
+
+            if (!user.IsApproved && user.UserName != "Admin")
+            {
+                return null;
+            }
+
             var result = await _signInManager.PasswordSignInAsync(username, password, true, false);
 
             if (result.Succeeded)
             {
-                var user = await _userManager.FindByNameAsync(username);
-
                 return new UserDto()
                 {
                     Id = user.Id,
@@ -35,6 +45,25 @@ namespace HR_System.Models.Services
 
             return null;
         }
+
+        //public async Task<UserDto> Authenticate(string username, string password)
+        //{
+        //    var result = await _signInManager.PasswordSignInAsync(username, password, true, false);
+
+        //    if (result.Succeeded)
+        //    {
+        //        var user = await _userManager.FindByNameAsync(username);
+
+        //        return new UserDto()
+        //        {
+        //            Id = user.Id,
+        //            Username = user.UserName,
+        //            Roles = await _userManager.GetRolesAsync(user)
+        //        };
+        //    }
+
+        //    return null;
+        //}
 
 
 
@@ -50,6 +79,7 @@ namespace HR_System.Models.Services
                 UserName = data.Username,
                 Email = data.Email,
                 PhoneNumber = data.PhoneNumber,
+                IsApproved = false
             };
 
             var result = await _userManager.CreateAsync(user, data.Password);
