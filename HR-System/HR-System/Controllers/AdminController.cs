@@ -11,11 +11,12 @@ namespace HR_System.Controllers
     {
         private readonly IEmployee _employee;
         private UserManager<AuthUser> _userManager;
-        public AdminController(IEmployee employee, UserManager<AuthUser> userManager)
+        private readonly InstantiateAdmin _instantiateAdmin;
+        public AdminController(IEmployee employee, UserManager<AuthUser> userManager, InstantiateAdmin instantiateAdmin)
         {
             _employee = employee;
             _userManager = userManager;
-
+            _instantiateAdmin = instantiateAdmin;
         }
         public async Task<IActionResult> Index()
         {
@@ -45,10 +46,20 @@ namespace HR_System.Controllers
             return RedirectToAction(nameof(PendingUsers));
         }
 
-        //public async Task<IActionResult> ClaimAdmin()
-        //{
-        //    return View();
-        //}
+        public async Task ApproveAdmin()
+        {
+            var user = await _userManager.Users.Where(a => a.UserName == "Admin").SingleOrDefaultAsync();
+
+            if (user != null)
+            {
+                user.IsApproved = true;
+                await _userManager.UpdateAsync(user);
+            }
+        }
+        public async Task<IActionResult> ClaimAdmin()
+        {
+            return View();
+        }
         //public async Task<IActionResult> ApproveAdmin()
         //{
         //    var user = await _userManager.FindByIdAsync("1");

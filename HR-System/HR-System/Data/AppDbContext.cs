@@ -30,6 +30,7 @@ namespace HR_System.Data
             {
                 UserName = "Admin",
                 Email = "admin@a.com",
+                IsApproved = true,
             };
 
             var passwordHasher = new PasswordHasher<AuthUser>();

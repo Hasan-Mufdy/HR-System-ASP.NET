@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HR_System.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231220204725_Latest")]
+    [Migration("20231221101531_Latest")]
     partial class Latest
     {
         /// <inheritdoc />
@@ -159,16 +159,16 @@ namespace HR_System.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "65fd3f36-25c3-4126-8f9a-b9c8ba5e08f4",
+                            Id = "3ab5bf48-e10c-4b90-831e-889dd792ec29",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a9dd87d7-4264-42ba-9d2c-2510979c3684",
+                            ConcurrencyStamp = "cd74e2d3-7f75-45f7-8040-38080e869160",
                             Email = "admin@a.com",
                             EmailConfirmed = false,
-                            IsApproved = false,
+                            IsApproved = true,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAENWfUuIWiFP6+iCJmEx2zD9tHp7Xp7LH87ziKk+k0rQA7jV1wsRuzNgiceuPeG7p5g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPKTZ7sFcB1uTRngBtIux1pbjA+oZ2xAsXU2PymwqYRkJPkmwgXxu1IeqG/0dipNag==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "18b9f597-6e54-45e5-ba3a-9f639f468505",
+                            SecurityStamp = "f0fe4a07-754e-4384-b358-415652c1687c",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });

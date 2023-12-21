@@ -248,7 +248,7 @@ namespace HR_System.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "IsApproved", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "65fd3f36-25c3-4126-8f9a-b9c8ba5e08f4", 0, "a9dd87d7-4264-42ba-9d2c-2510979c3684", "admin@a.com", false, false, false, null, null, null, "AQAAAAIAAYagAAAAENWfUuIWiFP6+iCJmEx2zD9tHp7Xp7LH87ziKk+k0rQA7jV1wsRuzNgiceuPeG7p5g==", null, false, "18b9f597-6e54-45e5-ba3a-9f639f468505", false, "Admin" });
+                values: new object[] { "3ab5bf48-e10c-4b90-831e-889dd792ec29", 0, "cd74e2d3-7f75-45f7-8040-38080e869160", "admin@a.com", false, true, false, null, null, null, "AQAAAAIAAYagAAAAEPKTZ7sFcB1uTRngBtIux1pbjA+oZ2xAsXU2PymwqYRkJPkmwgXxu1IeqG/0dipNag==", null, false, "f0fe4a07-754e-4384-b358-415652c1687c", false, "Admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
