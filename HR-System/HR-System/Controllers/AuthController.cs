@@ -4,10 +4,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HR_System.Controllers
 {
+    public enum UserRole
+    {
+        User,
+        HR
+    }
     public class AuthController : Controller
     {
         private IUserService userService;
-
+        
         public AuthController(IUserService service)
         {
             userService = service; ;
@@ -25,7 +30,13 @@ namespace HR_System.Controllers
         [HttpPost]
         public async Task<ActionResult<UserDto>> Signup(RegisterUserDto data)
         {
-            var user = await userService.Register(data, this.ModelState);
+            if (data.Roles == null || !data.Roles.Any() || data.Roles.Any(role => !Enum.TryParse(role, out UserRole userRole) || !Enum.IsDefined(typeof(UserRole), userRole)))
+            {
+                ModelState.AddModelError(nameof(data.Roles), "Invalid role selected.");
+                return View();
+            }
+
+            var user = await userService.Register(data, data.Roles, ModelState);
 
             if (ModelState.IsValid)
             {
@@ -33,6 +44,19 @@ namespace HR_System.Controllers
             }
             return View();
         }
+
+
+        //[HttpPost]
+        //public async Task<ActionResult<UserDto>> Signup(RegisterUserDto data)
+        //{
+        //    var user = await userService.Register(data, this.ModelState);
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        return Redirect("/");
+        //    }
+        //    return View();
+        //}
 
         [HttpPost]
         public async Task<ActionResult<UserDto>> Authenticate(LoginData loginData)

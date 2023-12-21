@@ -15,9 +15,17 @@
         <label class="sr-only" for="phonenumber">Phone number:</label>
         <input type="text" name="phonenumber" class="form-control" id="phonenumber">
     </div>
-        <div class="form-group">
+    <div class="form-group">
+        <label class="sr-only" for="Roles">Role:</label>
+        <select name="Roles" class="form-control" id="Roles">
+            <option value="User">User</option>
+            <option value="HR">HR</option>
+        </select>
+    </div>
+
+        @* <div class="form-group">
     <label class="sr-only" for="Roles">Role:</label>
     <input type="text" name="Roles" class="form-control" id="Roles">
-    </div>
+    </div> *@
     <button type="submit" class="btn btn-primary">Sign up</button>
 </form>
