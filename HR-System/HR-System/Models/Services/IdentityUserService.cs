@@ -21,12 +21,12 @@ namespace HR_System.Models.Services
         {
             var user = await _userManager.FindByNameAsync(username);
 
-            if (user == null && user.UserName != "Admin")
+            if (user == null)
             {
                 return null;
             }
 
-            if (!user.IsApproved && user.UserName != "Admin")
+            if (!user.IsApproved)
             {
                 return null;
             }
