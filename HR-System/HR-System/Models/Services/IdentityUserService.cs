@@ -3,6 +3,7 @@ using HR_System.Models.Entities;
 using HR_System.Models.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using static HR_System.Controllers.AuthController;
 
 namespace HR_System.Models.Services
 {
@@ -72,7 +73,7 @@ namespace HR_System.Models.Services
             throw new NotImplementedException();
         }
 
-        public async Task<UserDto> Register(RegisterUserDto data, ModelStateDictionary modelState)
+        public async Task<UserDto> Register(RegisterUserDto data, List<string> roles, ModelStateDictionary modelState)
         {
             var user = new AuthUser()
             {
@@ -86,7 +87,7 @@ namespace HR_System.Models.Services
 
             if (result.Succeeded)
             {
-                await _userManager.AddToRolesAsync(user, data.Roles);
+                await _userManager.AddToRolesAsync(user, roles);
 
                 return new UserDto()
                 {
