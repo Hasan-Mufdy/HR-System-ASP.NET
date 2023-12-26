@@ -61,6 +61,10 @@ namespace HR_System.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -156,16 +160,16 @@ namespace HR_System.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3ab5bf48-e10c-4b90-831e-889dd792ec29",
+                            Id = "c91707a7-7f05-4970-9824-1e25731e71e6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cd74e2d3-7f75-45f7-8040-38080e869160",
+                            ConcurrencyStamp = "f5feb1aa-b8c9-4b37-8dc9-d3614e4ba433",
                             Email = "admin@a.com",
                             EmailConfirmed = false,
                             IsApproved = true,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEPKTZ7sFcB1uTRngBtIux1pbjA+oZ2xAsXU2PymwqYRkJPkmwgXxu1IeqG/0dipNag==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEODda/mAZt2x022WP4rhj2WAyxll3dfCrZKF1r5GB2jbxAh507AhVa4cpA3r92SOVg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f0fe4a07-754e-4384-b358-415652c1687c",
+                            SecurityStamp = "22d0175a-f091-402e-a456-7e28fd4688ff",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
