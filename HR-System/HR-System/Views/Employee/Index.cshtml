@@ -1,34 +1,86 @@
 ﻿@model List<Employee>
 
-@if (Model != null)
-{
-    <div class="container mt-4">
-        <ul class="list-group">
-            <h1>Employees list:</h1>
+<div class="container mt-4">
+    <h1 class="mb-4">Employee List</h1>
+
+    <form class="d-flex" asp-controller="Employee" asp-action="Index" method="get">
+        <input class="form-control me-2" type="search" placeholder="Search by name" aria-label="Search" name="searchTerm">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <br>
+
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             @foreach (var employee in Model)
             {
-                <li class="list-group-item">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h3>@employee.Name</h3>
-                        </div>
-                        <div>
-                            <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@employee.Id"><i class="bi bi-pencil-square"></i>Edit </a>
-                            <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@employee.Id"><i class="bi bi-eye"></i>Details </a>
-                            <a class="btn btn-danger text-white" asp-action="Delete" asp-route-id="@employee.Id"><i class="bi bi-trash"></i>Delete </a>
+                <div class="col mb-4">
+                    <div class="card">
+                        <img src="../Assets/noimage.png" class="card-img-top img-fixed-height" alt="Employee Image">
+                        <div class="card-body">
+                            <h5 class="card-title">@employee.Name</h5>
+                            @if (employee.Salary != null)
+                            {
+                                <p class="card-text">Salary: $@employee.Salary.Amount</p>
+                            }
+                            else
+                            {
+                                <p> </p>
+                                <br>
+                            }
+                            @if (employee.Position != null)
+                            {
+                                <p class="card-text">Position: @employee.Position.Name</p>
+                            }
+                            else
+                            {
+                                <p> </p>
+                                <br>
+                            }
+                            <div class="d-grid gap-2">
+                                <a class="btn btn-primary" asp-action="Details" asp-route-id="@employee.Id">
+                                    <i class="bi bi-eye"></i> Details
+                                </a>
+                                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@employee.Id">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@employee.Id">
+                                    <i class="bi bi-trash"></i> Delete
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </li>
+                </div>
             }
-        </ul>
-        <div style="position: fixed; right: 25px; bottom: 25px;" class="text-white">
-            <a asp-controller="Employee" asp-action="Create" class="btn btn-success">
-                <i class="bi bi-plus-circle"></i> Add a new user
-            </a>
         </div>
+    }
+    else
+    {
+        <p>No employees are available.</p>
+    }
+
+    <div style="position: fixed; right: 25px; bottom: 25px;" class="text-white">
+        <a asp-controller="Employee" asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Add a new Employee
+        </a>
+        <a asp-controller="Salary" asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Add a new Salary
+        </a>
     </div>
-}
-else
-{
-    <p>No employees are available.</p>
-}
+</div>
+
+<style>
+    .img-fixed-height {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .card {
+        transition: transform 0.2s;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+</style>

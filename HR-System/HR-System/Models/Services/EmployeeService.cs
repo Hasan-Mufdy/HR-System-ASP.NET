@@ -26,7 +26,11 @@ namespace HR_System.Models.Services
 
         public async Task<List<Employee>> GetAllEmployees()
         {
-            return await _context.Employees.ToListAsync();
+            return await _context.Employees
+                .Include(e => e.Salary)
+                .Include(e => e.Department)
+                .Include(e => e.Position)
+                .ToListAsync();
         }
 
         public async Task<Employee> GetEmployeeById(int id)
@@ -56,7 +60,9 @@ namespace HR_System.Models.Services
 
         public async Task UpdateEmployee(int id, Employee newEmployee)
         {
-            var existingEmployee = await _context.Employees.FindAsync(id);
+            var existingEmployee = await _context.Employees
+                //.Include(e => e.Salary)
+                .SingleOrDefaultAsync(e => e.Id == id);
             //if (existingEmployee != null)
             //{
             //    return null;
@@ -65,6 +71,19 @@ namespace HR_System.Models.Services
             existingEmployee.DateOfBirth = newEmployee.DateOfBirth;
             existingEmployee.Number = newEmployee.Number;
             existingEmployee.Email = newEmployee.Email;
+
+            existingEmployee.SalaryId = newEmployee.SalaryId;
+            existingEmployee.PositionId = newEmployee.PositionId;
+            existingEmployee.DepartmentId = newEmployee.DepartmentId;
+            
+
+            // salary:
+            //if(existingEmployee.Salary != null)
+            //{
+            //    existingEmployee.Salary.Amount = newEmployee.Salary.Amount;
+            //    existingEmployee.Salary.Currency = newEmployee.Salary.Currency;
+            //    existingEmployee.Salary.EffectiveDate = newEmployee.Salary.EffectiveDate;
+            //}
 
             _context.Update(existingEmployee);
             await _context.SaveChangesAsync();

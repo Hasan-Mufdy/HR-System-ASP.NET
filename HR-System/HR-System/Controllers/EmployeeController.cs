@@ -12,10 +12,14 @@ namespace HR_System.Controllers
         {
             _employee = employee;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchTerm)
         {
-            var employee = await _employee.GetAllEmployees();
-            return View(employee);
+            List<Employee> employees = await _employee.GetAllEmployees();
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                employees = employees.Where(e => e.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
+            }
+            return View(employees);
         }
         public IActionResult Create()
         {
