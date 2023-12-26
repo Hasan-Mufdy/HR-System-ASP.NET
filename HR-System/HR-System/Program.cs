@@ -14,6 +14,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddTransient<IEmployee, EmployeeService>();
+builder.Services.AddTransient<ISalary, SalaryService>();
+builder.Services.AddTransient<IDepartment, DepartmentService>();
+builder.Services.AddTransient<IPosition, PositionService>();
+
+
 builder.Services.AddSingleton<InstantiateAdmin, InstAdminService>();
 
 

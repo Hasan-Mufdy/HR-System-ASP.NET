@@ -27,6 +27,51 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        @* @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link">@User.Identity.Name</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Logout", "Auth")">/ Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "Auth")">sign in</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Signup", "Auth")">Register</a>
+                            </li>
+                        } *@
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Employee" asp-action="Index">Manage Employees</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Admin Actions
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="@Url.Action("Index", "Admin")">Admin Dashboard</a>
+                                <a class="dropdown-item" href="@Url.Action("PendingUsers", "Admin")">Pending Users</a>
+                                <a class="dropdown-item" href="@Url.Action("ClaimAdmin", "Admin")">Claim Admin privileges</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                HR Actions
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="@Url.Action("Create", "Salary")">Add Salary</a>
+                                <a class="dropdown-item" href="@Url.Action("Create", "Department")">Add Department</a>
+                                <a class="dropdown-item" href="@Url.Action("Create", "Position")">Add Position</a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    <ul class="navbar-nav ms-auto">
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
@@ -45,9 +90,6 @@
                                 <a class="nav-link" href="@Url.Action("Signup", "Auth")">Register</a>
                             </li>
                         }
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Employee" asp-action="Index">Manage Employees</a>
-                        </li>
                     </ul>
                 </div>
             </div>

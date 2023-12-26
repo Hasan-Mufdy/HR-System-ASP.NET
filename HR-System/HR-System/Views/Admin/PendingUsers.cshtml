@@ -3,27 +3,39 @@
 
 <h2>Pending Users</h2>
 
-<table class="table">
+<table class="table custom-table">
     <thead>
         <tr>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Action</th>
+            <th style="color:white">Username</th>
+            <th style="color:white">Email</th>
+            <th style="color:white">Action</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var user in Model)
         {
             <tr>
-                <td>@user.UserName</td>
-                <td>@user.Email</td>
+                <td style="color:white">@user.UserName</td>
+                <td style="color:white">@user.Email</td>
                 <td>
-                    <form method="post" asp-action="ApproveUser">
-                        <input type="hidden" name="userId" value="@user.Id" />
-                        <button type="submit" class="btn btn-primary">Approve</button>
+                    <form style="color:white"  method="post" asp-action="ApproveUser">
+                        <input style="color:white" type="hidden" name="userId" value="@user.Id" />
+                        <button style="color:white" type="submit" class="btn btn-primary">Approve</button>
                     </form>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<style>
+    .custom-table {
+        color: white;
+    }
+    td{
+        color: white
+    }
+    th{
+        color: white
+    }
+</style>
