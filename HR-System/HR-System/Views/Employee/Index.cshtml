@@ -16,7 +16,7 @@
             {
                 <div class="col mb-4">
                     <div class="card">
-                        <img src="../Assets/noimage.png" class="card-img-top img-fixed-height" alt="Employee Image">
+                        <img src=@employee.ImageUrl class="card-img-top img-fixed-height" alt="Employee Image">
                         <div class="card-body">
                             <h5 class="card-title">@employee.Name</h5>
                             @if (employee.Salary != null)
@@ -62,9 +62,6 @@
     <div style="position: fixed; right: 25px; bottom: 25px;" class="text-white">
         <a asp-controller="Employee" asp-action="Create" class="btn btn-success">
             <i class="bi bi-plus-circle"></i> Add a new Employee
-        </a>
-        <a asp-controller="Salary" asp-action="Create" class="btn btn-success">
-            <i class="bi bi-plus-circle"></i> Add a new Salary
         </a>
     </div>
 </div>

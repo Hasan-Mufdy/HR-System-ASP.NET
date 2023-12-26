@@ -1,4 +1,6 @@
-﻿using HR_System.Data;
+﻿using Azure.Storage.Blobs.Models;
+using Azure.Storage.Blobs;
+using HR_System.Data;
 using HR_System.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,9 +9,12 @@ namespace HR_System.Models.Services
     public class EmployeeService : IEmployee
     {
         private readonly AppDbContext _context;
-        public EmployeeService(AppDbContext context)
+        private readonly IConfiguration _configuration;
+        public EmployeeService(AppDbContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
+
         }
 
         public async Task<int> Count()
@@ -39,8 +44,10 @@ namespace HR_System.Models.Services
             return employee;
         }
 
-        public async Task<Employee> PostEmployee(Employee employee)
+        public async Task<Employee> PostEmployee(Employee employee, IFormFile file)
         {
+            var URL = await UploudFile(file);
+
             var emp = new Employee()
             {
                 Id = employee.Id,
@@ -51,14 +58,15 @@ namespace HR_System.Models.Services
                 Email = employee.Email,
                 Position = employee.Position,
                 Salary = employee.Salary,
-                Department = employee.Department
+                Department = employee.Department,
+                ImageUrl = URL
             };
             await _context.AddAsync(emp);
             await _context.SaveChangesAsync();
             return emp;
         }
 
-        public async Task UpdateEmployee(int id, Employee newEmployee)
+        public async Task UpdateEmployee(int id, Employee newEmployee, IFormFile file)
         {
             var existingEmployee = await _context.Employees
                 //.Include(e => e.Salary)
@@ -75,7 +83,18 @@ namespace HR_System.Models.Services
             existingEmployee.SalaryId = newEmployee.SalaryId;
             existingEmployee.PositionId = newEmployee.PositionId;
             existingEmployee.DepartmentId = newEmployee.DepartmentId;
-            
+
+            if (file != null)
+            {
+                var ImageUrl = await UploudFile(file);
+                existingEmployee.ImageUrl = ImageUrl;
+            }
+            else
+            {
+                existingEmployee.ImageUrl = existingEmployee.ImageUrl;
+            }
+
+
 
             // salary:
             //if(existingEmployee.Salary != null)
@@ -87,6 +106,33 @@ namespace HR_System.Models.Services
 
             _context.Update(existingEmployee);
             await _context.SaveChangesAsync();
+        }
+        public async Task<string> UploudFile(IFormFile file)
+        {
+            var URL = "https://hrsystem.blob.core.windows.net/images/noimage.png";
+            if (file != null)
+            {
+                BlobContainerClient blobContainerClient =
+                    new BlobContainerClient(_configuration.GetConnectionString("StorageAccount"), "images");
+
+                await blobContainerClient.CreateIfNotExistsAsync();
+
+                BlobClient blobClient = blobContainerClient.GetBlobClient(file.FileName);
+
+                using var fileStream = file.OpenReadStream();
+
+                BlobUploadOptions blobUploadOptions = new BlobUploadOptions()
+                {
+                    HttpHeaders = new BlobHttpHeaders { ContentType = file.ContentType }
+                };
+
+                if (!blobClient.Exists())
+                {
+                    await blobClient.UploadAsync(fileStream, blobUploadOptions);
+                }
+                URL = blobClient.Uri.ToString();
+            }
+            return URL;
         }
     }
 }

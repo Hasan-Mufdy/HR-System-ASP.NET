@@ -89,3 +89,9 @@ C:\Users\HM\source\repos\HR-System-ASP.NET\HR-System\HR-System\obj\Debug\net7.0\
 C:\Users\HM\source\repos\HR-System-ASP.NET\HR-System\HR-System\bin\Debug\net7.0\System.Net.Http.Formatting.dll
 C:\Users\HM\source\repos\HR-System-ASP.NET\HR-System\HR-System\bin\Debug\net7.0\System.Web.Http.dll
 C:\Users\HM\source\repos\HR-System-ASP.NET\HR-System\HR-System\bin\Debug\net7.0\System.Web.Http.WebHost.dll
+C:\Users\HM\source\repos\HR-System-ASP.NET\HR-System\HR-System\bin\Debug\net7.0\Azure.Storage.Blobs.dll
+C:\Users\HM\source\repos\HR-System-ASP.NET\HR-System\HR-System\bin\Debug\net7.0\Azure.Storage.Common.dll
+C:\Users\HM\source\repos\HR-System-ASP.NET\HR-System\HR-System\bin\Debug\net7.0\Azure.Storage.Files.Shares.dll
+C:\Users\HM\source\repos\HR-System-ASP.NET\HR-System\HR-System\bin\Debug\net7.0\Azure.Storage.Queues.dll
+C:\Users\HM\source\repos\HR-System-ASP.NET\HR-System\HR-System\bin\Debug\net7.0\Microsoft.Extensions.Azure.dll
+C:\Users\HM\source\repos\HR-System-ASP.NET\HR-System\HR-System\bin\Debug\net7.0\System.IO.Hashing.dll

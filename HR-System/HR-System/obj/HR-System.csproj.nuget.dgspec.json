@@ -40,6 +40,18 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Azure.Storage.Blobs": {
+              "target": "Package",
+              "version": "[12.19.1, )"
+            },
+            "Azure.Storage.Files.Shares": {
+              "target": "Package",
+              "version": "[12.17.1, )"
+            },
+            "Azure.Storage.Queues": {
+              "target": "Package",
+              "version": "[12.17.1, )"
+            },
             "Microsoft.AspNet.WebApi": {
               "target": "Package",
               "version": "[5.3.0, )"
@@ -69,6 +81,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.14, )"
+            },
+            "Microsoft.Extensions.Azure": {
+              "target": "Package",
+              "version": "[1.7.1, )"
             }
           },
           "imports": [

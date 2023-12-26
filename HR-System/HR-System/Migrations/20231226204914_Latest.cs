@@ -211,6 +211,7 @@ namespace HR_System.Migrations
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Number = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PositionId = table.Column<int>(type: "int", nullable: true),
                     DepartmentId = table.Column<int>(type: "int", nullable: true),
                     SalaryId = table.Column<int>(type: "int", nullable: true)
@@ -248,7 +249,7 @@ namespace HR_System.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "IsApproved", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3ab5bf48-e10c-4b90-831e-889dd792ec29", 0, "cd74e2d3-7f75-45f7-8040-38080e869160", "admin@a.com", false, true, false, null, null, null, "AQAAAAIAAYagAAAAEPKTZ7sFcB1uTRngBtIux1pbjA+oZ2xAsXU2PymwqYRkJPkmwgXxu1IeqG/0dipNag==", null, false, "f0fe4a07-754e-4384-b358-415652c1687c", false, "Admin" });
+                values: new object[] { "c91707a7-7f05-4970-9824-1e25731e71e6", 0, "f5feb1aa-b8c9-4b37-8dc9-d3614e4ba433", "admin@a.com", false, true, false, null, null, null, "AQAAAAIAAYagAAAAEODda/mAZt2x022WP4rhj2WAyxll3dfCrZKF1r5GB2jbxAh507AhVa4cpA3r92SOVg==", null, false, "22d0175a-f091-402e-a456-7e28fd4688ff", false, "Admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

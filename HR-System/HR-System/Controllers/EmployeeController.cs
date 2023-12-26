@@ -8,9 +8,11 @@ namespace HR_System.Controllers
     public class EmployeeController : Controller
     {
         private readonly IEmployee _employee;
-        public EmployeeController(IEmployee employee)
+        private readonly IConfiguration _configuration;
+        public EmployeeController(IEmployee employee, IConfiguration configuration)
         {
             _employee = employee;
+            _configuration = configuration;
         }
         public async Task<IActionResult> Index(string searchTerm)
         {
@@ -27,14 +29,16 @@ namespace HR_System.Controllers
         }
         [HttpPost]
         //[Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create(Employee employee)
+        public async Task<IActionResult> Create(Employee employee, IFormFile file)
         {
+            ModelState.Remove("file");
+
             if (!ModelState.IsValid)
             {
                 return View(employee);
             }
 
-            await _employee.PostEmployee(employee);
+            await _employee.PostEmployee(employee, file);
             return RedirectToAction(nameof(Index));
         }
         public async Task<IActionResult> Edit(int id)
@@ -50,13 +54,15 @@ namespace HR_System.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, Employee employee)
+        public async Task<IActionResult> Edit(int id, Employee employee, IFormFile file)
         {
+            ModelState.Remove("file");
+
             //if (!ModelState.IsValid)
             //{
             //    return View(employee);
             //}
-            await _employee.UpdateEmployee(id, employee);
+            await _employee.UpdateEmployee(id, employee, file);
             return RedirectToAction(nameof(Index));
         }
 
