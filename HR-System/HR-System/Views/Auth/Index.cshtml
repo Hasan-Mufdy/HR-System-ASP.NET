@@ -1,4 +1,31 @@
-﻿﻿﻿<form class="form-inline" method="post" action="/auth/Authenticate">
+﻿<div class="container d-flex justify-content-center mt-5 ">
+    <form class="form-signin text-center">
+        <h2 class="mb-4">Sign In</h2>
+
+        <div style="margin-bottom:10px;" class="form-group">
+            <label for="username" class="sr-only">Username:</label>
+            <input type="text" name="username" class="form-control" id="username" placeholder="Username" required autofocus>
+        </div>
+
+        <div style="margin-bottom:10px;" class="form-group">
+            <label for="password" class="sr-only">Password:</label>
+            <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Sign In</button>
+    </form>
+    <div asp-validation-summary="All" class="text-danger mt-3"></div>
+</div>
+
+
+
+
+
+
+
+
+
+@* ﻿﻿<form class="form-inline" method="post" action="/auth/Authenticate">
     <div class="form-group">
         <label class="sr-only" for="username">username:</label>
         <input type="text" name="username" class="form-control" id="username">
@@ -11,4 +38,4 @@
 
     <button type="submit" class="btn btn-default">Sign in</button>
 </form>
-<div asp-validation-summary="All"></div>
+<div asp-validation-summary="All"></div> *@

@@ -20,9 +20,21 @@ namespace HR_System.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            var countHR = await _employee.CountHR();
+            var countManager = await _employee.CountManager();
+            var countIT = await _employee.CountIT();
+            var countTeamLeader = await _employee.CountTeamLeader();
+
+            var avgSalary = await _employee.SalaryAvg();
+
             var adminViewModel = new AdminViewModel
             {
                 EmployeesNumber = await _employee.Count(),
+                AvgSalary = avgSalary,
+                CountHR = countHR,
+                CountIT = countIT,
+                CountTeamLeader = countTeamLeader,
+                CountManager = countManager
             };
 
             return View(adminViewModel);
