@@ -1,5 +1,6 @@
 ﻿using HR_System.Data;
 using HR_System.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace HR_System.Models.Services
 {
@@ -10,6 +11,11 @@ namespace HR_System.Models.Services
         public DepartmentService(AppDbContext context)
         {
             _context = context;
+        }
+
+        public async Task<List<Department>> GetAllDepartments()
+        {
+            return await _context.Departments.ToListAsync();
         }
 
         public async Task<Department> PostDepartment(Department department)

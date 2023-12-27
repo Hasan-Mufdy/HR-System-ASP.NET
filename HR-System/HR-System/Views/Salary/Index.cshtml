@@ -1,0 +1,30 @@
+﻿@model List<Salary>
+
+@if (Model != null)
+{
+    <div class="container mt-4">
+        <ul class="list-group">
+            <h1>Salaries list:</h1>
+            @foreach (var salary in Model)
+            {
+                <li class="list-group-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h3>Id: @salary.Id</h3>
+                            <h3>Salary: @salary.Amount</h3>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+        <div style="position: fixed; right: 25px; bottom: 25px;" class="text-white">
+            <a asp-controller="Salary" asp-action="Create" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> Add a new Salary
+            </a>
+        </div>
+    </div>
+}
+else
+{
+    <p>No Salaries are available.</p>
+}

@@ -3,5 +3,7 @@
     public interface ISalary
     {
         Task<Salary> PostSalary(Salary salary);
+        Task<List<Salary>> GetAllSalaries();
+
     }
 }
