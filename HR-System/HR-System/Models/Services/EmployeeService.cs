@@ -16,11 +16,68 @@ namespace HR_System.Models.Services
             _configuration = configuration;
 
         }
+        public async Task<double> SalaryAvg()
+        {
+            var empNumber = await _context.Employees
+                .Where(e => e.Salary != null)
+                .CountAsync();
+            
+            var salaryList = await _context.Employees
+                .Include(e => e.Salary)
+                .ToListAsync();
 
+            //if (empNumber == 0)
+            //{
+            //    return 0.0;
+            //}
+            var totalSalary = await _context.Employees
+                .Where(e => e.Salary != null)
+                .SumAsync(e => e.Salary.Amount);
+
+            if (empNumber == 1)
+            {
+                return totalSalary;
+            }
+            //var totalSalary = await _context.Employees
+            //    .Where(e => e.Salary != null)
+            //    .SumAsync(e => e.Salary.Amount);
+
+            double averageSalary = totalSalary / empNumber;
+            return averageSalary;
+        }
         public async Task<int> Count()
         {
             return await _context.Employees.CountAsync();
         }
+
+        public async Task<int> CountHR()
+        {
+            return await _context.Employees
+                .Where(e => e.Position != null && e.Position.Name == "HR")
+                .CountAsync();
+        }
+
+        public async Task<int> CountManager()
+        {
+            return await _context.Employees
+                .Where(e => e.Position != null && e.Position.Name == "Manager")
+                .CountAsync();
+        }
+
+        public async Task<int> CountIT()
+        {
+            return await _context.Employees
+                .Where(e => e.Position != null && e.Position.Name == "IT")
+                .CountAsync();
+        }
+        public async Task<int> CountTeamLeader()
+        {
+            return await _context.Employees
+                .Where(e => e.Position != null && e.Position.Name == "Team Leader")
+                .CountAsync();
+        }
+
+        ///////////////////////////////////////////////////////
 
         public async Task DeleteEmployee(int id)
         {

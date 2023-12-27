@@ -70,27 +70,28 @@
                         </li>
 
                     </ul>
-
-                    <ul class="navbar-nav ms-auto">
+                    <div style="padding-right: 100px;">
+                        <ul class="navbar-nav ms-auto">
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link">@User.Identity.Name</a>
+                                    <a class="nav-link" style="font-weight: bold;">@User.Identity.Name</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="@Url.Action("Logout", "Auth")">/ Logout</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="font-weight: bold;" href="@Url.Action("Logout", "Auth")">/ Logout</a>
                             </li>
                         }
                         else
                         {
-                            <li class="nav-item">
-                                <a class="nav-link" href="@Url.Action("Index", "Auth")">sign in</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="font-weight: bold;" href="@Url.Action("Index", "Auth")">sign in</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="@Url.Action("Signup", "Auth")">Register</a>
+                                    <a class="nav-link" style="font-weight: bold;" href="@Url.Action("Signup", "Auth")">Register</a>
                             </li>
                         }
                     </ul>
+                    </div>
                 </div>
             </div>
         </nav>
