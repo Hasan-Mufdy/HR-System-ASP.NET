@@ -3,5 +3,7 @@
     public interface IPosition
     {
         Task<Position> PostPosition(Position position);
+        Task<List<Position>> GetAllPositions();
+
     }
 }

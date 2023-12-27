@@ -1,6 +1,180 @@
 ﻿@using HR_System.Models.ViewModels;
 @model AdminViewModel
 
+<!-- Include Bootstrap CSS -->
+<link rel="stylesheet" href="https://bootswatch.com/5/darkly/bootstrap.min.css">
+
+<!-- Dark Theme Styles -->
+<style>
+    body.dark-theme {
+        background-color: #343a40 !important;
+        color: #ffffff !important;
+    }
+
+        body.dark-theme .card {
+            background-color: #424242 !important;
+            border-color: #616161 !important;
+        }
+
+        body.dark-theme .list-group-item {
+            background-color: #616161 !important;
+            border-color: #8d8d8d !important;
+        }
+
+        /* Add additional dark theme styles as needed */
+
+        body.dark-theme #employeeDistributionChart {
+            background-color: #424242 !important;
+            border-color: #616161 !important;
+        }
+</style>
+
+<!-- Display Statistics with Improved Design -->
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Employee Statistics</h5>
+            <ul class="list-group">
+                <li class="list-group-item">Number of Employees: @Model.EmployeesNumber</li>
+                <li class="list-group-item">Salaries average: @Model.AvgSalary</li>
+                <li class="list-group-item">Number of HR employees: @Model.CountHR</li>
+                <li class="list-group-item">Number of IT employees: @Model.CountIT</li>
+                <li class="list-group-item">Number of Manager employees: @Model.CountManager</li>
+                <li class="list-group-item">Number of Team Leader employees: @Model.CountTeamLeader</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Add Canvas for Chart -->
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Employee Distribution Chart</h5>
+            <canvas id="employeeDistributionChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Include Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- JavaScript to Initialize Chart -->
+<script>
+    var ctx = document.getElementById('employeeDistributionChart').getContext('2d');
+    var employeeDistributionChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['HR', 'IT', 'Manager', 'Team Leader'],
+            datasets: [{
+                label: 'Employee Distribution',
+                data: [@Model.CountHR, @Model.CountIT, @Model.CountManager, @Model.CountTeamLeader],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+
+
+
+@* @using HR_System.Models.ViewModels;
+@model AdminViewModel
+
+<!-- Include Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+<!-- Display Statistics with Improved Design -->
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Employee Statistics</h5>
+            <ul class="list-group">
+                <li class="list-group-item">Number of Employees: @Model.EmployeesNumber</li>
+                <li class="list-group-item">Salaries average: @Model.AvgSalary</li>
+                <li class="list-group-item">Number of HR employees: @Model.CountHR</li>
+                <li class="list-group-item">Number of IT employees: @Model.CountIT</li>
+                <li class="list-group-item">Number of Manager employees: @Model.CountManager</li>
+                <li class="list-group-item">Number of Team Leader employees: @Model.CountTeamLeader</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Add Canvas for Chart -->
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Employee Distribution Chart</h5>
+            <canvas id="employeeDistributionChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Include Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- JavaScript to Initialize Chart -->
+<script>
+    var ctx = document.getElementById('employeeDistributionChart').getContext('2d');
+    var employeeDistributionChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['HR', 'IT', 'Manager', 'Team Leader'],
+            datasets: [{
+                label: 'Employee Distribution',
+                data: [@Model.CountHR, @Model.CountIT, @Model.CountManager, @Model.CountTeamLeader],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+ *@
+
+
+
+
+@* @using HR_System.Models.ViewModels;
+@model AdminViewModel
+
 <p>Number of Employees: @Model.EmployeesNumber</p>
 
 <p>Salaries average: @Model.AvgSalary</p>
@@ -10,3 +184,4 @@
 <p>Number of Manager employees: @Model.CountManager</p>
 <p>Number of Team Leader employees: @Model.CountTeamLeader</p>
 
+ *@

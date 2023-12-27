@@ -1,5 +1,6 @@
 ﻿using HR_System.Data;
 using HR_System.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace HR_System.Models.Services
 {
@@ -10,6 +11,11 @@ namespace HR_System.Models.Services
         public PositionService(AppDbContext context)
         {
             _context = context;
+        }
+
+        public async Task<List<Position>> GetAllPositions()
+        {
+            return await _context.Positions.ToListAsync();
         }
 
         public async Task<Position> PostPosition(Position position)

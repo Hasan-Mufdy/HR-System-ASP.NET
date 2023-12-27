@@ -11,9 +11,10 @@ namespace HR_System.Controllers
         {
             _salary = salary;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var salaries = await _salary.GetAllSalaries();
+            return View(salaries);
         }
         public IActionResult Create()
         {

@@ -12,6 +12,12 @@ namespace HR_System.Models.Services
         {
             _context = context;
         }
+
+        public async Task<List<Salary>> GetAllSalaries()
+        {
+            return await _context.Salaries.ToListAsync();
+        }
+
         public async Task<Salary> PostSalary(Salary salary)
         {
             var sal = new Salary()

@@ -12,9 +12,10 @@ namespace HR_System.Controllers
         {
             _position = position;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var positions = await _position.GetAllPositions();
+            return View(positions);
         }
         public IActionResult Create()
         {

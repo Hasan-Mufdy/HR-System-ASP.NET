@@ -12,9 +12,10 @@ namespace HR_System.Controllers
         {
             _department = department;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var departments = await _department.GetAllDepartments();
+            return View(departments);
         }
         public IActionResult Create()
         {
