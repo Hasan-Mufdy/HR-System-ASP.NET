@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\HR-System",
+    "\\HR-System\\HR-System",
+    "\\HR-System\\HR-System\\Views",
+    "\\HR-System\\HR-System\\Views\\Department"
   ],
-  "SelectedNode": "\\HR-System.sln",
+  "SelectedNode": "\\README.md",
   "PreviewInSolutionExplorer": false
 }
