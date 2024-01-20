@@ -41,9 +41,15 @@ namespace HR_System.Models.Services
             //var totalSalary = await _context.Employees
             //    .Where(e => e.Salary != null)
             //    .SumAsync(e => e.Salary.Amount);
-
-            double averageSalary = totalSalary / empNumber;
-            return averageSalary;
+            if(empNumber > 0)
+            {
+                double averageSalary = totalSalary / empNumber;
+                return averageSalary;
+            }
+            else
+            {
+                return 0;
+            }
         }
         public async Task<int> Count()
         {

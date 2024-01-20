@@ -58,7 +58,7 @@ namespace HR_System.Controllers
             return RedirectToAction(nameof(PendingUsers));
         }
 
-        public async Task ApproveAdmin()
+        public async Task<IActionResult> ApproveAdmin()
         {
             var user = await _userManager.Users.Where(a => a.UserName == "Admin").SingleOrDefaultAsync();
 
@@ -67,6 +67,7 @@ namespace HR_System.Controllers
                 user.IsApproved = true;
                 await _userManager.UpdateAsync(user);
             }
+            return RedirectToAction("Index", "Admin");
         }
         public async Task<IActionResult> ClaimAdmin()
         {
